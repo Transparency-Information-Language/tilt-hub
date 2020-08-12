@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mongo:
+      image: mongo
+      container_name: mongo
+      environment:
+        MONGO_INITDB_DATABASE: tilt
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: SuperSecret
+      volumes:
+        - ./volumes/mongo:/data/db
+        - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      ports:
+        - '27017-27019:27017-27019'
+  mongoexpress:
+      image: mongo-express
+      ports:
+          - "8081:8081"
+      links:
+          - mongo
+      restart: always # this is necessary since the volume of mongo causes a longer restart
+      depends_on:
+          - 'mongo'
+      environment:
+        ME_CONFIG_MONGODB_ADMINUSERNAME: root
+        ME_CONFIG_MONGODB_ADMINPASSWORD: SuperSecret
+        ME_CONFIG_BASICAUTH_USERNAME: admin
+        ME_CONFIG_BASICAUTH_PASSWORD: SuperSecret
