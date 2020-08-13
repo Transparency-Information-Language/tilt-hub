@@ -1,0 +1,221 @@
+schema: |
+  type ChangesOfPurpose {
+    description: String
+    plannedDateOfChange: String
+    urlOfNewVersion: String
+    affectedDataCategories: [String]
+  }
+
+  type AutomatedDecisionMaking {
+    inUse: Boolean
+    logicInvolved: String
+    scopeAndIntendedEffects: String
+  }
+
+  type SupervisoryAuthority {
+    name: String
+    address: String
+    country: String
+    email: String
+    phone: String
+  }
+
+  type RightToComplain {
+    available: Boolean
+    description: String
+    url: String
+    email: String
+    supervisoryAuthority: SupervisoryAuthority
+    identificationEvidences: [String]
+  }
+
+  type RightToWithdrawConsent {
+    available: Boolean
+    description: String
+    url: String
+    email: String
+    identificationEvidences: [String]
+  }
+
+  type RightToDataPortability {
+    available: Boolean
+    description: String
+    url: String
+    email: String
+    identificationEvidences: [String]
+  }
+
+  type RightToRectificationOrDeletion {
+    available: Boolean
+    description: String
+    url: String
+    email: String
+    identificationEvidences: [String]
+  }
+
+  type RightToInformation {
+    available: Boolean
+    description: String
+    url: String
+    email: String
+    identificationEvidences: [String]
+  }
+
+  type Sources {
+    description: String
+    url: String
+    publiclyAvailable: Boolean
+  }
+
+  type AdministrativeFee {
+    amount: Int
+    currency: String
+  }
+
+  type AccessAndDataPortability {
+    available: Boolean
+    description: String
+    url: String
+    email: String
+    dataFormats: [String]
+    administrativeFee: AdministrativeFee
+    identificationEvidences: [String]
+  }
+
+  type StandardDataProtectionClause {
+    available: Boolean
+    description: String
+  }
+
+  type PresenceOfEnforceableRightsAndEffectiveRemedies {
+    available: Boolean
+    description: String
+  }
+
+  type AppropriateGuarantees {
+    available: Boolean
+    description: String
+  }
+
+  type AdequacyDecision {
+    available: Boolean
+    description: String
+  }
+
+  type ThirdCountryTransfers {
+    country: String
+    standardDataProtectionClause: StandardDataProtectionClause
+    presenceOfEnforceableRightsAndEffectiveRemedies: PresenceOfEnforceableRightsAndEffectiveRemedies
+    appropriateGuarantees: AppropriateGuarantees
+    adequacyDecision: AdequacyDecision
+  }
+
+  type NonDisclosure {
+    legalRequirement: Boolean
+    contractualRegulation: Boolean
+    obligationToProvide: Boolean
+    consequences: String
+  }
+
+  type Temporal {
+    description: String
+    ttl: String
+  }
+
+  type Storage {
+    aggregationFunction: String
+    legalBasisConditional: [String]
+    purposeConditional: [String]
+    temporal: [Temporal]
+  }
+
+  type Representative {
+    name: String
+    email: String
+    phone: String
+  }
+
+  type Recipients {
+    name: String
+    division: String
+    address: String
+    country: String
+    category: String
+    representative: Representative
+  }
+
+  type LegitimateInterests {
+    exists: Boolean
+    reasoning: String
+  }
+
+  type LegalBases {
+    reference: String
+    description: String
+  }
+
+  type Purposes {
+    purpose: String
+    description: String
+  }
+
+  type DataDisclosed {
+    _id: String
+    category: String
+    nonDisclosure: NonDisclosure
+    storage: [Storage]
+    recipients: [Recipients]
+    legitimateInterests: [LegitimateInterests]
+    legalBases: [LegalBases]
+    purposes: [Purposes]
+  }
+
+  type DataProtectionOfficer {
+    name: String
+    address: String
+    country: String
+    email: String
+    phone: String
+  }
+
+  type Controller {
+    name: String
+    division: String
+    address: String
+    country: String
+    representative: Representative
+  }
+
+  type Meta {
+    _id: String
+    name: String
+    created: String
+    modified: String
+    version: Int
+    language: String
+    status: String
+    url: String
+    _hash: String
+  }
+
+  type Tilt {
+    changesOfPurpose: [ChangesOfPurpose]
+    automatedDecisionMaking: AutomatedDecisionMaking
+    rightToComplain: RightToComplain
+    rightToWithdrawConsent: RightToWithdrawConsent
+    rightToDataPortability: RightToDataPortability
+    rightToRectificationOrDeletion: RightToRectificationOrDeletion
+    rightToInformation: RightToInformation
+    sources: [Sources]
+    accessAndDataPortability: AccessAndDataPortability
+    thirdCountryTransfers: [ThirdCountryTransfers]
+    dataDisclosed: [DataDisclosed]
+    dataProtectionOfficer: DataProtectionOfficer
+    controller: Controller
+    meta: Meta
+    _id: ObjectId
+  }
+
+types:
+    Tilt:
+        collection: tilt

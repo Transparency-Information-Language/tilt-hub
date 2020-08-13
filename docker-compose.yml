@@ -12,8 +12,11 @@ services:
         - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       ports:
         - '27017-27019:27017-27019'
+#      command: ["--bind_ip", "mongo-host", "--auth"]
+
   mongoexpress:
       image: mongo-express
+      container_name: mongo-express
       ports:
           - "8081:8081"
       links:
@@ -26,3 +29,34 @@ services:
         ME_CONFIG_MONGODB_ADMINPASSWORD: SuperSecret
         ME_CONFIG_BASICAUTH_USERNAME: admin
         ME_CONFIG_BASICAUTH_PASSWORD: SuperSecret
+  
+  restheart:
+        image: softinstigate/restheart:5.1.1
+        container_name: restheart
+        environment:
+         MONGO_URI: mongodb://root:SuperSecret@mongo
+        depends_on:
+            - mongo
+        ports:
+            - "8080:8080"
+  
+  mongoke:
+        image: mongoke/mongoke
+        container_name: mongoke
+        depends_on:
+          - 'mongo'
+        restart: always
+        environment:
+          DB_URL: mongodb://tilt-user:SuperSecret@mongo/tilt
+          GRAPHIQL_DEFAULT_QUERY: 'query { TiltNodes { edges { node { meta { name }}}}}'
+        volumes:
+          - ./mongoke.yml:/conf.yml
+        ports:
+          - 8082:80
+
+ # mongoke-populate-db:
+ #       image: mongoke/populate-mongo
+ #       volumes:
+ #           - ./mongoke.yml/:/conf.yml
+ #       environment:
+ #         DB_URL: mongodb://tilt-user:SuperSecret@mongo/tilt
