@@ -1,6 +1,6 @@
 version: '3'
 services:
-  mongo:
+  mongo: # DATABASE
       image: mongo
       container_name: mongo
       environment:
@@ -14,7 +14,7 @@ services:
         - '27017-27019:27017-27019'
 #      command: ["--bind_ip", "mongo-host", "--auth"]
 
-  mongoexpress:
+  mongoexpress: # DATABASE ADMINISTRATION
       image: mongo-express
       container_name: mongo-express
       ports:
@@ -30,7 +30,7 @@ services:
         ME_CONFIG_BASICAUTH_USERNAME: admin
         ME_CONFIG_BASICAUTH_PASSWORD: SuperSecret
   
-  restheart:
+  restheart: # DATABASE REST INTERFACE
         image: softinstigate/restheart:5.1.1
         container_name: restheart
         environment:
@@ -40,7 +40,7 @@ services:
         ports:
             - "8080:8080"
   
-  mongoke:
+  mongoke: # DATABASE GRAPHQL INTERFACE
         image: mongoke/mongoke
         container_name: mongoke
         depends_on:
