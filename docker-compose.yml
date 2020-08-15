@@ -7,12 +7,17 @@ services:
         MONGO_INITDB_DATABASE: tilt
         MONGO_INITDB_ROOT_USERNAME: root
         MONGO_INITDB_ROOT_PASSWORD: SuperSecret
+        #MONGODB_REPLICA_SET_KEY: key123
+        #MONGODB_REPLICA_SET_MODE: primary
+        #MONGODB_REPLICA_SET_NAME: key123
+        
       volumes:
         - ./volumes/mongo:/data/db
+        - ./mongodb.conf:/etc/mongodb.conf
         - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       ports:
         - '27017-27019:27017-27019'
-#      command: ["--bind_ip", "mongo-host", "--auth"]
+      command: --config /etc/mongodb.conf --bind_ip_all --replSet rs0
 
   mongoexpress: # DATABASE ADMINISTRATION
       image: mongo-express
@@ -48,12 +53,18 @@ services:
         restart: always
         environment:
           DB_URL: mongodb://tilt-user:SuperSecret@mongo/tilt
-          GRAPHIQL_DEFAULT_QUERY: 'query { TiltNodes { edges { node { meta { name }}}}}'
+          GRAPHIQL_DEFAULT_QUERY: 'query { TiltNodes { edges { node { meta { name } } } } }'
         volumes:
           - ./mongoke.yml:/conf.yml
         ports:
           - 8082:80
 
+  triggers:
+        container_name: triggers
+        build: './triggers/javascript' # /python is under development
+       # depends_on:
+       #   - 'mongo'
+        
  # mongoke-populate-db:
  #       image: mongoke/populate-mongo
  #       volumes:
