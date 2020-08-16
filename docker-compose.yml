@@ -3,13 +3,14 @@ services:
   mongo: # DATABASE
       image: mongo
       container_name: mongo
+      hostname: mongo
       environment:
         MONGO_INITDB_DATABASE: tilt
         MONGO_INITDB_ROOT_USERNAME: root
         MONGO_INITDB_ROOT_PASSWORD: SuperSecret
-        #MONGODB_REPLICA_SET_KEY: key123
-        #MONGODB_REPLICA_SET_MODE: primary
-        #MONGODB_REPLICA_SET_NAME: key123
+        # MONGODB_REPLICA_SET_KEY: key123
+        # MONGODB_REPLICA_SET_MODE: primary
+        # MONGODB_REPLICA_SET_NAME: key123
         
       volumes:
         - ./volumes/mongo:/data/db
@@ -19,7 +20,7 @@ services:
         - '27017-27019:27017-27019'
       command: --config /etc/mongodb.conf --bind_ip_all --replSet rs0
 
-  mongoexpress: # DATABASE ADMINISTRATION
+  mongo-express: # DATABASE ADMINISTRATION
       image: mongo-express
       container_name: mongo-express
       ports:
@@ -42,6 +43,8 @@ services:
          MONGO_URI: mongodb://root:SuperSecret@mongo
         depends_on:
             - mongo
+        volumes:
+                - ./restheart-default.properties:/opt/restheart/etc/default.properties
         ports:
             - "8080:8080"
   
@@ -59,15 +62,10 @@ services:
         ports:
           - 8082:80
 
-  triggers:
+  triggers: # TILT VALIDATION TRIGGERS
         container_name: triggers
-        build: './triggers/javascript' # /python is under development
+        build: './triggers/javascript' # /python as an alternative under development
+        restart: always
        # depends_on:
        #   - 'mongo'
         
- # mongoke-populate-db:
- #       image: mongoke/populate-mongo
- #       volumes:
- #           - ./mongoke.yml/:/conf.yml
- #       environment:
- #         DB_URL: mongodb://tilt-user:SuperSecret@mongo/tilt
