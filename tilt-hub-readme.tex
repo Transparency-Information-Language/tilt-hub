@@ -1,0 +1,274 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{tilt-hub-transparency-information-language-document-hub}{%
+\section{tilt-hub: Transparency Information Language Document
+Hub}\label{tilt-hub-transparency-information-language-document-hub}}
+
+\textbf{tilt-hub} is a document storage for transparency information
+specified in the \emph{Transparency Information Language} and is part of
+the \emph{Transparency Information Language and Toolkit}.
+
+This document storage comprises five services in order to perform CRUD
+operations on transparency information documents and serves for clients,
+that either only want plain information about GDPR compliance of a data
+controller or carry out arbitrary complex research/statistics/analysis
+tasks.
+
+\includegraphics{docs/tilt-hub.png}
+
+\hypertarget{usage}{%
+\subsection{Usage}\label{usage}}
+
+Simply run
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{docker{-}compose}\NormalTok{ up [{-}d]}
+\end{Highlighting}
+\end{Shaded}
+
+After some startup time, there will be the following five containers:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{docker{-}compose}\NormalTok{ ps}
+    \ExtensionTok{Name}\NormalTok{                   Command               State                                      Ports}
+    \ExtensionTok{{-}{-}{-}}
+\ExtensionTok{mongo}\NormalTok{           docker{-}entrypoint.sh {-}{-}con ...   Up      0.0.0.0:27017{-}}\OperatorTok{\textgreater{}}\NormalTok{27017/tcp, 0.0.0.0:27018{-}}\OperatorTok{\textgreater{}}\NormalTok{27018/tcp, 0.0.0.0:27019{-}}\OperatorTok{\textgreater{}}\NormalTok{27019/tcp}
+\ExtensionTok{mongo{-}express}\NormalTok{   tini {-}{-} /docker{-}entrypoint ...   Up      0.0.0.0:8081{-}}\OperatorTok{\textgreater{}}\NormalTok{8081/tcp}
+\ExtensionTok{mongoke}\NormalTok{         dumb{-}init {-}{-} /entrypoint.s ...   Up      0.0.0.0:8082{-}}\OperatorTok{\textgreater{}}\NormalTok{80/tcp}
+\ExtensionTok{restheart}\NormalTok{       java {-}Dfile.encoding=UTF{-}8 ...   Up      4443/tcp, 8009/tcp, 0.0.0.0:8080{-}}\OperatorTok{\textgreater{}}\NormalTok{8080/tcp}
+\ExtensionTok{triggers}\NormalTok{        docker{-}entrypoint.sh node  ...   Up}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{mongo-db}{%
+\subsubsection{Mongo DB}\label{mongo-db}}
+
+The mongo database is available via
+\href{}{mongodb://root:SuperSecret@mongo}. A client application written
+in Python could look like:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{from}\NormalTok{ pymongo }\ImportTok{import}\NormalTok{ MongoClient}
+\ImportTok{from}\NormalTok{ pprint }\ImportTok{import}\NormalTok{ pprint}
+
+\NormalTok{client }\OperatorTok{=}\NormalTok{ MongoClient(}\StringTok{\textquotesingle{}mongodb://root:SuperSecret@mongo:27017/?authSource=admin\&readPreference=primary\textquotesingle{}}\NormalTok{)}
+
+
+\BuiltInTok{filter}\OperatorTok{=}\NormalTok{\{}
+    \StringTok{\textquotesingle{}controller.name\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Green Company\textquotesingle{}}
+\NormalTok{\}}
+
+\NormalTok{result }\OperatorTok{=}\NormalTok{ client[}\StringTok{\textquotesingle{}tilt\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}tilt\textquotesingle{}}\NormalTok{].find(}
+  \BuiltInTok{filter}\OperatorTok{=}\BuiltInTok{filter}
+\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ document }\KeywordTok{in}\NormalTok{ result:}
+\NormalTok{    pprint(document)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{mongo-express}{%
+\subsubsection{Mongo Express}\label{mongo-express}}
+
+A graphical interface to the database can be reached under
+\href{}{http://localhost:8081/}.
+
+\begin{verbatim}
+Username: admin
+Password: SuperSecret
+\end{verbatim}
+
+\includegraphics{docs/mongo-express.png}
+
+\hypertarget{rest-api}{%
+\subsubsection{REST API}\label{rest-api}}
+
+In order to retrieve all documents from the database \texttt{tilt} and
+collection \texttt{tilt}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{http}\NormalTok{ GET }\StringTok{"localhost:8080/tilt/tilt"}\NormalTok{ {-}a admin:secret}
+
+
+\ExtensionTok{HTTP/1.1}\NormalTok{ 200 OK}
+\ExtensionTok{Content{-}Type}\NormalTok{: application/json}
+\ExtensionTok{Date}\NormalTok{: Sun, 16 Aug 2020 21:36:05 GMT}
+\ExtensionTok{...}
+
+\BuiltInTok{[}
+\NormalTok{    \{}
+        \StringTok{"\_etag"}\NormalTok{: \{}
+            \StringTok{"}\VariableTok{$oid}\StringTok{"}\NormalTok{: }\StringTok{"5f39a2cb5937e6719cbb3bed"}
+\NormalTok{        \},}
+        \StringTok{"\_id"}\NormalTok{: \{}
+            \StringTok{"}\VariableTok{$oid}\StringTok{"}\NormalTok{: }\StringTok{"5f39a2cb8f9a233727fb7fa2"}
+\NormalTok{        \},}
+        \StringTok{"accessAndDataPortability"}\NormalTok{: \{}
+            \StringTok{"administrativeFee"}\NormalTok{: \{}
+                \StringTok{"amount"}\NormalTok{: 0,}
+                \StringTok{"currency"}\NormalTok{: }\StringTok{"EUR"}
+\NormalTok{            \},}
+\NormalTok{...}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{graphql-api}{%
+\subsubsection{GraphQL API}\label{graphql-api}}
+
+Use the \emph{GraphiQL} interface running at
+\href{}{http://localhost:8082} to perform GraphQL operations. To return
+the \texttt{meta.name} field of all documents run:
+
+\begin{verbatim}
+{
+  TiltNodes {
+    edges {
+      node {
+        meta {
+          name
+        }
+      }
+    }
+  }
+}
+\end{verbatim}
+
+\hypertarget{triggers}{%
+\subsubsection{Triggers}\label{triggers}}
+
+In this basic scenario there will be a JavaScript trigger microservice
+which validates all documents on every change that occurs using the
+\href{https://github.com/Transparency-Information-Language/schema}{tilt-schema}.
+
+The output of the validation can be obtained directly from the logs:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{docker{-}compose}\NormalTok{ logs {-}f triggers}
+
+\ExtensionTok{triggers}         \KeywordTok{|} \ExtensionTok{Downloaded}\NormalTok{ schema from https://raw.githubusercontent.com/Transparency{-}Information{-}Language/schema/master/tilt{-}schema.json}
+\ExtensionTok{triggers}         \KeywordTok{|} \ExtensionTok{Trigger}\NormalTok{ on tilt collection initialized successfully!}
+\ExtensionTok{triggers}         \KeywordTok{|} \ExtensionTok{Document}\NormalTok{ changes detected!}
+\ExtensionTok{triggers}         \KeywordTok{|} \ExtensionTok{tilt}\NormalTok{ schema validation successful!}
+\end{Highlighting}
+\end{Shaded}
+
+Similarly, there could by a Python based trigger which is located
+\href{./triggers/python}{here}. In order to use it, configure the
+\href{./docker-compose.yml}{docker-compose.yml} accordingly.
+
+\hypertarget{author}{%
+\subsection{Author}\label{author}}
+
+Elias Grünewald
+
+\hypertarget{license}{%
+\subsection{License}\label{license}}
+
+GNU General Public License, Version 3
+
+\end{document}
