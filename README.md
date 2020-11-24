@@ -118,4 +118,4 @@ Similarly, there could by a Python based trigger which is located [here](./trigg
 Elias Grünewald
 
 ## License
-GNU General Public License, Version 3
+[MIT License](LICENSE)
