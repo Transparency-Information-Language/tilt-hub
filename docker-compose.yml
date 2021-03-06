@@ -24,7 +24,7 @@ services:
       image: mongo-express
       container_name: mongo-express
       ports:
-          - "8081:8081"
+          - "9090:8081"
       links:
           - mongo
       restart: always # this is necessary since the volume of mongo causes a longer restart
