@@ -12,9 +12,9 @@ db.createUser(
                     db: "admin"
                 }
             ],
-            otherDBRoles: {
-                local: [ "readWrite" ]
-            }
+            //otherDBRoles: {
+            //    local: [ "readWrite" ]
+            //}
         }
 );
 
