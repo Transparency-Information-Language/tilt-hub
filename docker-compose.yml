@@ -16,7 +16,7 @@ services:
       volumes:
         - ./volumes/mongo:/data/db
         - ./mongodb.conf:/etc/mongodb.conf
-        - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+        - ./init-hub.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       ports:
         - 27017-27019:27017-27019
       command: --config /etc/mongodb.conf --bind_ip_all --replSet rs0
