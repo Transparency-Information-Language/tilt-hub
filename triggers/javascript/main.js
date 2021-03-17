@@ -18,7 +18,7 @@ let req = https.get(url, function (res) {
         // console.log(schema);
         var validate = ajv.compile(schema);
 
-
+        try {
         var MongoClient = require('mongodb').MongoClient;
         MongoClient.connect("mongodb://root:SuperSecret@mongo/?authSource=admin&authMechanism=SCRAM-SHA-256", { useNewUrlParser: true, useUnifiedTopology: true }) // &replicaSet=rs0
             .then(function (client) {
@@ -45,6 +45,9 @@ let req = https.get(url, function (res) {
 
                 });
             });
+        } catch (e) {
+            console.error(e.message);
+        }
 
         console.log('Trigger on tilt collection initialized successfully!')
 
