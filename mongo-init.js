@@ -1,6 +1,6 @@
 db.auth('root', 'SuperSecret')
 
-db = db.getSiblingDB('tilt')
+// db = db.getSiblingDB('tilt')
 
 db.tilt.insertOne( { msg: "tilt" } );
 
