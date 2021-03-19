@@ -102,6 +102,19 @@ Date: Sun, 16 Aug 2020 21:36:05 GMT
             },
 ...
 ```
+
+Or retrieve a specific document using its id:
+
+```bash
+http GET "http://localhost:8080/tilt/tilt/6053f42d0da4272ad0d52e8a" -a admin:secret
+```
+
+New documents can be created by `POST`ing a valid TILT document to http://localhost:8080/tilt/tilt (don't forget to authorize with Basic Auth).
+
+**See [here](https://restheart.org/docs/v3/quick-reference/) for all query possibilites.**
+
+
+
 ### GraphQL API
 Use the _GraphiQL_ interface running at [http://localhost:8082]() to perform GraphQL operations. To return the `meta.name` field of all documents run:
 ```graphql
