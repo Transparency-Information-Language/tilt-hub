@@ -25,7 +25,28 @@ restheart       java -Dfile.encoding=UTF-8 ...   Up      4443/tcp, 8009/tcp, 0.0
 triggers        docker-entrypoint.sh node  ...   Up
 ```
 
+
 ### Mongo DB
+
+Follow these steps to enable the MongoDB replica set
+```bash
+# Login into the container
+docker exec -it mongo bin/bash
+# Login to mongo shell
+mongo
+# Change current database
+use admin
+# Authenticate to the admin database
+db.auth("root", "SuperSecret")
+# Initiate replica set with one member (localhost)
+rs.initiate({_id:"rs0", members: [{"_id": 0, "host": "localhost:27017"}]})
+# Close mongo shell
+exit
+# Exit container shell
+exit
+```
+
+
 The mongo database is available via [mongodb://root:SuperSecret@mongo](). A client application written in Python could look like:
 
 ```python
