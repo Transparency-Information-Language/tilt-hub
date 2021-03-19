@@ -15,8 +15,8 @@ def notify_manager(op_document):
 
 
 try:
-    #client = MongoClient('mongodb://tilt-user:SuperSecret@mongo/?authSource=tilt&authMechanism=SCRAM-SHA-256')
-    client = MongoClient('mongodb://root:SuperSecret@mongo:27017/?authSource=admin&authMechanism=SCRAM-SHA-256&replicaSet=rs0')
+    client = MongoClient('mongodb://tilt-user:SuperSecret@mongo/?authSource=tilt&authMechanism=SCRAM-SHA-256')
+    # client = MongoClient('mongodb://root:SuperSecret@mongo:27017/?authSource=admin&authMechanism=SCRAM-SHA-256&replicaSet=rs0')
 
     triggers = MongoTrigger(client)
 
