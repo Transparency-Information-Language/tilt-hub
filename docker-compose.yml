@@ -67,6 +67,6 @@ services:
        # depends_on:
        #   - 'mongo'
         
- # triggers-py:
- #       container_name: triggers-py
- #       build: './triggers/python'
+  triggers-py:
+        container_name: triggers-py
+        build: './triggers/python'

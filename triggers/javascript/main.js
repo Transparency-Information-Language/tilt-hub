@@ -1,3 +1,4 @@
+const { EROFS } = require('constants');
 const https = require('https');
 
 var url = 'https://raw.githubusercontent.com/Transparency-Information-Language/schema/master/tilt-schema.json';
@@ -30,9 +31,12 @@ let req = https.get(url, function (res) {
 
                     // console.log(JSON.stringify(change));
 
-                    var mongoId = change.fullDocument._id;
-
-                    delete change.fullDocument._id;
+                    try {
+                        var mongoId = change.fullDocument._id;
+                        delete change.fullDocument._id;                            
+                    } catch (error) {
+                        console.error(error.message);
+                    }
 
                     var valid = validate(change.fullDocument);
                     if (!valid) {
