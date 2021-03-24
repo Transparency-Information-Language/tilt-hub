@@ -1,6 +1,41 @@
 version: '3'
 services:
 
+  traefik:
+    image: traefik:v2.3.7
+    command:
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --providers.docker
+      - --api
+      - --certificatesresolvers.le.acme.dnschallenge=true
+      - --certificatesresolvers.le.acme.dnschallenge.provider=inwx
+      #- --certificatesresolvers.le.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      - --certificatesresolvers.le.acme.email=
+      - --certificatesresolvers.le.acme.storage=acme.json
+      - --metrics.prometheus=true
+      - --metrics.prometheus.addEntryPointsLabels=true
+      - --metrics.prometheus.addServicesLabels=true
+    container_name: traefik
+    volumes:
+      - ${PWD}/acme.json:/acme.json
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 443:443
+      - 80:80
+    labels:
+      - traefik.http.middlewares.admin.basicauth.users=admin:$$apr1$$0.awPBoj$$4gPOCQQPaWHnFEYrNBxHv0
+      - traefik.http.routers.traefik.entrypoints=websecure
+      - traefik.http.routers.traefik.middlewares=admin
+      - traefik.http.routers.traefik.rule=Host(`traefik.implementation.cloud`)
+      - traefik.http.routers.traefik.service=api@internal
+      - traefik.http.routers.traefik.tls.certresolver=le
+    environment:
+      - INWX_USERNAME=
+      - INWX_PASSWORD=
+
+
+
   mongo: # DATABASE
       image: mongo
       container_name: mongo
@@ -33,6 +68,11 @@ services:
         ME_CONFIG_MONGODB_ADMINPASSWORD: SuperSecret
         ME_CONFIG_BASICAUTH_USERNAME: admin
         ME_CONFIG_BASICAUTH_PASSWORD: SuperSecret
+      labels:
+      - traefik.enable=true
+      - traefik.http.routers.mongoexpress.entrypoints=websecure
+      - traefik.http.routers.mongoexpress.rule=Host(`mongo.tilt.implementation.cloud`)
+      - traefik.http.routers.mongoexpress.tls.certresolver=le
   
   restheart: # DATABASE REST INTERFACE
         image: softinstigate/restheart:5.1.1
@@ -66,7 +106,12 @@ services:
         restart: always
        # depends_on:
        #   - 'mongo'
+        labels:
+          - traefik.enable=false
         
   triggers-py:
         container_name: triggers-py
         build: './triggers/python'
+        labels:
+          - traefik.enable=false
+        
