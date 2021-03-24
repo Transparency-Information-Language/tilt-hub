@@ -38,7 +38,7 @@ try:
     except:
         print('Failed to validate document!')
 
-    print('Stopping tot tail oplog...')    
+    print('Stopping to tail oplog...')    
     triggers.stop_tail()
 
 
