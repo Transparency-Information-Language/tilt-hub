@@ -16,7 +16,7 @@ services:
       volumes:
         - ./volumes/mongo:/data/db
         - ./mongodb.conf:/etc/mongodb.conf
-        - ./mongodb.keyfile:/etc/mongodb.keyfile
+        - ./mongodb.keyfile:/tmp/mongodb.keyfile
         - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       ports:
         - 27017-27019:27017-27019

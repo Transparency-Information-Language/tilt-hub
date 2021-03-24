@@ -51,7 +51,7 @@ Create a MongoDB keyfile via
 # Create secret
 openssl rand -base64 756 > mongodb.keyfile
 # Protect file
-chmod 400 mongodb.keyfile
+sudo chown 999:999 mongodb.keyfile
 ```
 
 The mongo database is available via [mongodb://root:SuperSecret@mongo](). A client application written in Python could look like:
