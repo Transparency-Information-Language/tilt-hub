@@ -135,6 +135,11 @@ all tilt documents where meta.name equals 'Blue'
 GET "http://localhost:8080/tilt/tilt?filter={'meta.status': 'inactive', 'dataDisclosed.recipients.name': 'Red'}"
 all controllers that send data to the Red company and whose document status is inactive
 ```
+
+You can use `filter` to have all MongoDB’s queries power.
+Don't forget to authorize using Basic Auth (User: admin, Password: secret).
+
+
 ### GraphQL API
 Use the _GraphiQL_ interface running at [http://localhost:8082]() to perform GraphQL operations. To return the `meta.name` field of all documents run:
 ```graphql
