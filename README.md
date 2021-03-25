@@ -120,8 +120,21 @@ New documents can be created by `POST`ing a valid TILT document to http://localh
 
 **See [here](https://restheart.org/docs/v3/quick-reference/) for all query possibilites.**
 
+Some examples for `GET`ing documents:
 
+```bash
+GET "http://localhost:8080/tilt/tilt?id=605bc9b783990f850a9cf492"
+single tilt document by id 605…
 
+GET "http://localhost:8080/tilt/tilt"
+all tilt documents
+
+GET "http://localhost:8080/tilt/tilt?filter={'meta.name' : 'Blue'}"
+all tilt documents where meta.name equals 'Blue'
+
+GET "http://localhost:8080/tilt/tilt?filter={'meta.status': 'inactive', 'dataDisclosed.recipients.name': 'Red'}"
+all controllers that send data to the Red company and whose document status is inactive
+```
 ### GraphQL API
 Use the _GraphiQL_ interface running at [http://localhost:8082]() to perform GraphQL operations. To return the `meta.name` field of all documents run:
 ```graphql
