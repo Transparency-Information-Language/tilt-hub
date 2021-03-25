@@ -151,6 +151,31 @@ Use the _GraphiQL_ interface running at [http://localhost:8082]() to perform Gra
 }
 ```
 
+In Python, you could retrieve the same information like this:
+
+```python
+from graphqlclient import GraphQLClient
+
+client = GraphQLClient('http://tilt-hub-host.com:8082/')
+
+result = client.execute('''
+query {
+  TiltNodes {
+    edges {
+      node {
+        meta {
+          name
+        }
+      }
+    }
+  }
+}
+''')
+
+print(result)
+```
+
+
 ### Triggers
 In this basic scenario there will be a JavaScript trigger microservice which validates all documents on every change that occurs using the [tilt-schema](https://github.com/Transparency-Information-Language/schema).
 
