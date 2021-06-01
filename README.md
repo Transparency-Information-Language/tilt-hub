@@ -8,14 +8,25 @@ This document storage comprises five services in order to perform CRUD operation
 
 
 ## Usage
-Simply run
+
+1. Create a MongoDB keyfile via
+```bash
+# Create secret
+openssl rand -base64 756 > mongodb.keyfile
+# Protect file
+chmod 600 mongodb.keyfile
+```
+
+
+2. Run (`-d` for running in the background)
 ```bash
 docker-compose up [-d]
 ```
 
-After some startup time, there will be the following five containers:
+3. After some startup time, there will be the following five containers. You're done!
 ```bash
 docker-compose ps
+
     Name                   Command               State                                      Ports
     ---
 mongo           docker-entrypoint.sh --con ...   Up      0.0.0.0:27017->27017/tcp, 0.0.0.0:27018->27018/tcp, 0.0.0.0:27019->27019/tcp
@@ -25,8 +36,17 @@ restheart       java -Dfile.encoding=UTF-8 ...   Up      4443/tcp, 8009/tcp, 0.0
 triggers        docker-entrypoint.sh node  ...   Up
 ```
 
+(Optionally, in case of trouble) 
 
-### Mongo DB
+1. Stop and delete all running containers `docker compose down` and `docker rm $(docker ps -aq)` (attention, this deletes _all_ containers!).
+2. Check if there is an empty `volumes/mongo` directory.
+3. Again, create a fresh keyfile (see above).
+4. Run only the mongo container via `docker compose up mongo --force-recreate`.
+5. Follow the steps below to enable the MongoDB replica set.
+6. Start all remaining containers `docker compose up`.
+
+
+### Mongo DB 
 
 Follow these steps to enable the MongoDB replica set
 ```bash
@@ -46,13 +66,7 @@ exit
 exit
 ```
 
-Create a MongoDB keyfile via
-```bash
-# Create secret
-openssl rand -base64 756 > mongodb.keyfile
-# Protect file
-sudo chown 999:999 mongodb.keyfile
-```
+
 
 The mongo database is available via [mongodb://root:SuperSecret@mongo](). A client application written in Python could look like:
 
