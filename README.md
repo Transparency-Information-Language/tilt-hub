@@ -148,6 +148,9 @@ all tilt documents where meta.name equals 'Blue'
 
 GET "http://localhost:8080/tilt/tilt?filter={'meta.status': 'inactive', 'dataDisclosed.recipients.name': 'Red'}"
 all controllers that send data to the Red company and whose document status is inactive
+
+GET "http://localhost:8080/tilt/tilt?keys={'controller.name' : 1}"
+all tilt documents but only the controller.name attribute (0 for all but controller.name)
 ```
 
 You can use `filter` to have all MongoDB’s queries power.
