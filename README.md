@@ -137,7 +137,7 @@ New documents can be created by `POST`ing a valid TILT document to http://localh
 Some examples for `GET`ing documents:
 
 ```bash
-GET "http://localhost:8080/tilt/tilt?id=605bc9b783990f850a9cf492"
+GET "http://localhost:8080/tilt/tilt/605bc9b783990f850a9cf492"
 single tilt document by id 605…
 
 GET "http://localhost:8080/tilt/tilt"
