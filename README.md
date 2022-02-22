@@ -14,7 +14,12 @@ This document storage comprises five services in order to perform CRUD operation
 # Create secret
 openssl rand -base64 756 > mongodb.keyfile
 # Protect file
-chmod 600 mongodb.keyfile
+chmod 400 mongodb.keyfile
+# Set owner
+sudo chown systemd-coredump mongodb.keyfile 
+# Check if permissions look like this
+ls -la mongodb.keyfile 
+-r-------- 1 systemd-coredump docker 1024 Feb 22 12:11 mongodb.keyfile
 ```
 
 
