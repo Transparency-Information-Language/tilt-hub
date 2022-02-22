@@ -71,6 +71,32 @@ exit
 exit
 ```
 
+#### More useful commands
+```
+db.auth('root', 'SuperSecret');
+
+use tilt
+
+db.createUser(
+        {
+            user: "root",
+            pwd: "SuperSecret",
+            roles: [
+                {
+                    role: "readWrite",
+                    db: "tilt"
+                }
+            ],
+        }
+);
+
+db.createUser({
+      user: "admin", pwd: "SuperSecret", roles: [ ]
+    }
+ )
+
+ db.tilt.insertOne({'hello' : 'world'});
+```
 
 
 The mongo database is available via [mongodb://root:SuperSecret@mongo](). A client application written in Python could look like:
