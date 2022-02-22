@@ -9,19 +9,12 @@ services:
         MONGO_INITDB_DATABASE: tilt
         MONGO_INITDB_ROOT_USERNAME: root
         MONGO_INITDB_ROOT_PASSWORD: SuperSecret
-        # MONGODB_REPLICA_SET_KEY: key123
-        # MONGODB_REPLICA_SET_MODE: primary
-        # MONGODB_REPLICA_SET_NAME: key123
       restart: on-failure
       volumes:
         - ./volumes/mongo:/data/db
-        - ./mongodb.conf:/etc/mongodb.conf
-        - ./mongodb.keyfile:/tmp/mongodb.keyfile
-        - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       ports:
-        - 27017-27019:27017-27019
-      command: --config /etc/mongodb.conf
-
+        - 27017:27017
+    
   mongo-express: # DATABASE ADMINISTRATION
       image: mongo-express
       container_name: mongo-express
@@ -60,14 +53,3 @@ services:
           - ./mongoke.yml:/conf.yml
         ports:
           - 8082:80
-
-  triggers-js: # TILT VALIDATION TRIGGERS
-        container_name: triggers-js
-        build: './triggers/javascript'
-        restart: always
-       # depends_on:
-       #   - 'mongo'
-        
-  triggers-py:
-        container_name: triggers-py
-        build: './triggers/python'

@@ -1,4 +1,0 @@
-pymongo==3.11.0
-mongotriggers==2.0.1
-tilt==0.0.4
-fastjsonschema==2.14.4
