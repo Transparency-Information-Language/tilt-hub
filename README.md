@@ -166,7 +166,7 @@ Don't forget to authorize using Basic Auth (User: admin, Password: secret).
 Use the _GraphiQL_ interface running at [http://localhost:8082]() to perform GraphQL operations. To return the `meta.name` field of all documents run:
 ```graphql
 {
-  TiltNodes {
+  TiltNodes(first: 1000) {
     edges {
       node {
         meta {
