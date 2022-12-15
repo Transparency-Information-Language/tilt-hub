@@ -7,6 +7,9 @@ This document storage comprises five services in order to perform CRUD operation
 ![](docs/tilt-hub.png)
 
 
+## Development Server 
+[Hosted on AWS](http://ec2-3-64-237-95.eu-central-1.compute.amazonaws.com:8080/)
+
 ## Usage
 
 1. Create a MongoDB keyfile via
